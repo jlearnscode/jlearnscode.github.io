@@ -1,0 +1,5 @@
+Some HTML tags used: <h1>, <br>, <meta>, <svg>, <symbol>, <nav>, <div>, <ul>, <li>, <button>, <img>, <article>, <script>, <span>
+
+Some CSS Properties used: background-image, color, text-shadow, transition, text-align, width
+
+I used javascript to implement dark and light mode theming, and Bootstrap for a lot of other webpage modernization, such as positioning, collapsible menus, an image card, and a navbar.

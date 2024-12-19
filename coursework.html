@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+
+<html lang="en" data-bs-theme="dark">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">-->
+        <!--        <script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>-->
+        <!--Finally figured it out, dark mode wasn't added until Bootstrap 5.3! #tooearlyclub #early-->
+        <!--Used bootstrap official docs: https://getbootstrap.com/docs/5.3/getting-started/introduction/#cdn-links-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <!--<script src="toggledarkmode.js"></script>-->
+        <script src="js/color-modes.js"></script>
+
+        <!--
+            For css toggler referenced:
+            https://stackblitz.com/github/twbs/examples/tree/main/color-modes?file=index.html
+            Not sure why bootstrap official css won't work, but need this imported style, maybe beta still?
+        -->
+        <link href="imports/styles.css" rel="stylesheet">
+        <link href="imports/jstyle.css" rel="stylesheet">
+        <title>Coursework</title>
+    </head>
+
+    <body>
+        <!--From bootstrap dark mode example-->
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="bootstrap" viewBox="0 0 118 94">
+                <path fill="currentColor" fill-rule="evenodd" d="M24.509 0c-6.733 0-11.715
+                                                                 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485
+                                                                 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066
+                                                                 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893
+                                                                 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624
+                                                                 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214
+                                                                 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 0
+                                                                 1-2-2V24a2 2 0 0 1 2-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01
+                                                                 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863M60.521
+                                                                 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727
+                                                                 0-4.643-3.264-7.207-9.012-7.207M49.948 49.2v16.458H60.91c7.167 0 10.964-2.876
+                                                                 10.964-8.281s-3.903-8.178-11.425-8.178H49.948z" clip-rule="evenodd" />
+            </symbol>
+            <symbol id="check2" viewBox="0 0 16 16">
+                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1
+                         .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+            </symbol>
+            <symbol id="circle-half" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 0 8 1zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16" />
+            </symbol>
+            <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+                <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277
+                         7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35
+                         8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312
+                         5.124.06A.75.75 0 0 1 6 .278" />
+                <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097
+                         1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.73 1.73 0 0 0-1.097
+                         1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.73 1.73 0 0 0 9.31
+                         6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.73 1.73 0 0 0
+                         1.097-1.097zM13.863.099a.145.145 0 0 1 .274
+                         0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0
+                         .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274
+                         0l-.258-.774a1.16 1.16 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1
+                         0-.274l.774-.258c.346-.115.617-.386.732-.732z" />
+            </symbol>
+            <symbol id="sun-fill" viewBox="0 0 16 16">
+                <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1
+                         0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8
+                         13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0
+                         1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0
+                         .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707
+                         0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0
+                         1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707
+                         0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464
+                         4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5
+                         0 0 1 0 .708" />
+            </symbol>
+        </svg>
+
+        <!--Referenced https://getbootstrap.com/docs/5.3/components/navbar/-->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand">jlearnscode</a> <!-- // TODO: href="#" links to coding / linked in, kofi, etc-->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="coursework.html">Courses</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="reflection.html">Thoughts</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Fun
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="cyootie.html">Wanna see a cyootie?</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item disabled" href="#">More to come</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="d-flex dropdown color-modes">
+                            <button class="btn" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static">
+                                <svg class="bi my-1 me-2 theme-icon-active">
+                                    <use href="#circle-half"></use>
+                                </svg>
+                                <span class="ms-2" id="bd-theme-text">Toggle theme</span>
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <button type="button" class="dropdown-item d-flex" data-bs-theme-value="light">
+                                        <svg class="bi me-2 opacity-50 theme-icon">
+                                            <use href="#sun-fill"></use>
+                                        </svg>
+                                        Light
+                                        <svg class="bi ms-auto d-none">
+                                            <use href="#check2"></use>
+                                        </svg>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="dropdown-item d-flex" data-bs-theme-value="dark">
+                                        <svg class="bi me-2 opacity-50 theme-icon">
+                                            <use href="#moon-stars-fill"></use>
+                                        </svg>
+                                        Dark
+                                        <svg class="bi ms-auto d-none">
+                                            <use href="#check2"></use>
+                                        </svg>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="dropdown-item d-flex active" data-bs-theme-value="auto">
+                                        <svg class="bi me-2 opacity-50 theme-icon">
+                                            <use href="#circle-half"></use>
+                                        </svg>
+                                        Auto
+                                        <svg class="bi ms-auto d-none">
+                                            <use href="#check2"></use>
+                                        </svg>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <h1>Coursework for MS-CS</h1>
+        <h2>Courses In Progress</h2>
+
+        <!--Referenced https://getbootstrap.com/docs/5.3/components/accordion/#always-open-->
+        <div class="accordion" id="accordionPanelsStayOpenExample" style="width: 50rem;">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                        Approximation Algorithms and Linear Programming
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                        <!-- Begin Learned/Skills Dropdown Section-->
+                        <!-- <ul>
+                        <li>
+                        // TODO: Individual skills gained, summarized (bulleted list?)
+                        -->
+                        <h5>Learning Outcomes<h5>
+                            <h6>
+                                <ul>
+                                    <li>Formulate linear and integer programming problems for solving commonly encountered optimization problems.</li>
+                                    <li>Understand how approximation algorithms compute solutions that are guaranteed to be within some constant factor of the optimal solution.</li>
+                                    <li>Develop a basic understanding of how linear and integer programming problems are solved.</li>
+                                </ul>
+                            </h6>
+                                <!-- </li>
+                        </ul>
+                        -->
+                                <!-- End Learned/Skills Dropdown Section-->
+                                <!-- Begin Course Description Dropdown Section-->
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="inprogressCourseInfo1A">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#inprogressCourseInfoCollapse1A" aria-expanded="false" aria-controls="inprogressCourseInfoCollapse1A">
+                                        Course Description (Official)
+                                    </button>
+                                </h3>
+                                <div id="inprogressCourseInfoCollapse1A" class="accordion-collapse collapse" aria-labelledby="inprogressCourseInfo1A">
+                                    <div class="accordion-body">
+                                        <h6>
+                                            This course continues our data structures and algorithms specialization
+                                            by focusing on the use of linear and integer programming formulations
+                                            for solving algorithmic problems that seek optimal solutions to problems
+                                            arising from domains such as resource allocation, scheduling, task assignment,
+                                            and variants of the traveling salesperson problem. Next, we will study
+                                            algorithms for NP-hard problems whose solutions are guaranteed to be within
+                                            some approximation factor of the best possible solutions. Such algorithms
+                                            are often quite efficient and provide useful bounds on the optimal solutions.
+                                            The learning will be supported by instructor provided notes, readings from
+                                            textbooks and assignments. Assignments will include conceptual multiple-choice
+                                            questions as well as problem solving assignments that will involve programming
+                                            and testing algorithms.
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div> <!-- End Course Description Dropdown Section -->
+                        </div>
+                        </div>
+                    </div> <!-- End In Progress Course 1 Section -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                                Introduction to Machine Learning: Supervised Learning
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                            <div class="accordion-body">
+                        <!-- Begin Learned/Skills Dropdown Section -->
+                        <!-- <ul>
+                        <li>
+                        // TODO: Individual skills gained, summarized (bulleted list?)
+                        -->
+                                <h5>Learning Outcomes<h5>
+                                    <h6>
+                                        <ul>
+                                            <li>Use modern machine learning tools and python libraries.</li>
+                                            <li>Explain how to deal with linearly-inseparable data.</li>
+                                            <li>Compare logistic regression’s strengths and weaknesses.</li>
+                                            <li>Explain what decision tree is & how it splits nodes.</li>
+                                        </ul>
+                                    </h6>
+                                <!-- </li>
+                        </ul>
+                        -->
+                                <!-- End Learned/Skills Dropdown Section -->
+                                <!-- Begin Course Description Dropdown Section -->
+                                    <div class="accordion-item">
+                                        <h3 class="accordion-header" id="inprogressCourseInfo2A">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#inprogressCourseInfoCollapse2A" aria-expanded="false" aria-controls="inprogressCourseInfoCollapse2A">
+                                                Course Description (Official)
+                                            </button>
+                                        </h3>
+                                        <div id="inprogressCourseInfoCollapse2A" class="accordion-collapse collapse" aria-labelledby="inprogressCourseInfo2A">
+                                            <div class="accordion-body">
+                                                <h6>
+                                                    In this course, you’ll be learning various supervised ML algorithms and
+                                                    prediction tasks applied to different data. You’ll learn when to use which
+                                                    model and why, and how to improve the model performances. We will cover
+                                                    models such as linear and logistic regression, KNN, Decision trees and
+                                                    ensembling methods such as Random Forest and Boosting, kernel methods such as SVM.
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div> <!-- End Course Description Dropdown Section -->
+                                </div>
+                                </div>
+                            </div> <!-- End In Progress Course 2 Section -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                        Introduction to Generative AI
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                    <!-- Begin Learned/Skills Dropdown Section -->
+                    <!-- <ul>
+                    <li>
+                    // TODO: Individual skills gained, summarized (bulleted list?)
+                    -->
+                                    <h5>Learning Outcomes<h5>
+                                        <h6>
+                                            <ul>
+                                                <li>Learn the key models for Generative AI, including ChatGPT and the Transformer for text, and the GAN and the Diffusion Model for images.</li>
+                                                <li>Develop a strong theoretical foundation and practical math skills for Generative AI.</li>
+                                                <li>Understand the capabilities and limitations of Generative AI.</li>
+                                            </ul>
+                                        </h6>
+                            <!-- </li>
+                    </ul>
+                    -->
+                            <!-- End Learned/Skills Dropdown Section -->
+                            <!-- Begin Course Description Dropdown Section -->
+                                        <div class="accordion-item">
+                                            <h3 class="accordion-header" id="inprogressCourseInfo3A">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#inprogressCourseInfoCollapse3A" aria-expanded="false" aria-controls="inprogressCourseInfoCollapse3A">
+                                                    Course Description (Official)
+                                                </button>
+                                            </h3>
+                                            <div id="inprogressCourseInfoCollapse3A" class="accordion-collapse collapse" aria-labelledby="inprogressCourseInfo3A">
+                                                <div class="accordion-body">
+                                                    <h6>
+                                                        In this course, you’ll be learning various supervised ML algorithms and
+                                                        prediction tasks applied to different data. You’ll learn when to use which
+                                                        model and why, and how to improve the model performances. We will cover
+                                                        models such as linear and logistic regression, KNN, Decision trees and
+                                                        ensembling methods such as Random Forest and Boosting, kernel methods such as SVM.
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </div> <!-- End Course Description Dropdown Section -->
+                                    </div>
+                                    </div> <!-- End In Progress Course 2 Section -->
+                                </div> <!-- End of Coursework In Progress-->
+
+                                <p></p>
+                                <h2>Completed Coursework</h2>
+                                <div class="accordion" id="accordionPanelsStayOpenCompleted" style="width: 50rem;">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="panelsStayOpen-Completed1">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-Completedcollapse1" aria-expanded="false" aria-controls="panelsStayOpen-Completedcollapse1">
+                                                Network Systems Foundations
+                                            </button>
+                                        </h2>
+                                        <div id="panelsStayOpen-Completedcollapse1" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-Completed1">
+                                            <div class="accordion-body">
+                        <!-- Begin Learned/Skills Dropdown Section-->
+                        <!-- <ul>
+                            <li>
+                            // TODO: Individual skills gained, summarized (bulleted list?)
+                            -->
+                                                <h5>Learning Outcomes<h5>
+                                                    <h6>
+                                                        <ul>
+                                                            <li>Describe networking layers in depth and how they relate to one another.</li>
+                                                            <li>Analyze traffic through python programming.</li>
+                                                            <li>Design a simplified routing protocol that has similar features as to what powers the Internet.</li>
+                                                            <li>Develop a client and server with socket programming.</li>
+                                                            <li>Generate certificates for TLS which powers the security in https.</li>
+                                        <!--J Added 2024 12 18:-->
+                                                            <li>Specifically learned git, Visual Studio Code, Github, and Codespaces.</li>
+                                                        </ul>
+                                                    </h6>
+                                <!-- </li>
+                            </ul>
+                            -->
+                                <!-- End Learned/Skills Dropdown Section-->
+                                <!-- Begin Course Description Dropdown Section-->
+                                                    <div class="accordion-item">
+                                                        <h3 class="accordion-header" id="courseInfo1A">
+                                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#courseInfoCollapse1A" aria-expanded="false" aria-controls="courseInfoCollapse1A">
+                                                                Course Description (Official)
+                                                            </button>
+                                                        </h3>
+                                                        <div id="courseInfoCollapse1A" class="accordion-collapse collapse" aria-labelledby="courseInfo1A">
+                                                            <div class="accordion-body">
+                                                                <h6>
+                                                                    Throughout this course, Network Systems Foundations, you will delve into the fundamental layers of network communication.
+                                                                    You will start with a thorough discussion of the Link Layer and its crucial role, moving on to the intricacies of
+                                                                    Internet Protocol (IP) and router data planes, and then navigate through the complexities of the transport layer,
+                                                                    application layer, and network security. With a practical focus, you'll write Python code to manage routing tables,
+                                                                    analyze network traffic, simulate router functionalities, and create digital certificates for web servers.
+                                                                    By the end of this course, you will have a well-rounded understanding of networking principles, from data transmission
+                                                                    and routing to application protocols and security, and will be equipped with practical skills to navigate the ever-evolving
+                                                                    landscape of network technology.
+                                                                </h6>
+                                                            </div>
+                                                        </div>
+                                                    </div> <!-- End Course Description Dropdown Section-->
+                                                </div>
+                                                </div>
+                                            </div> <!--End of Completed Coursework 1 Dropdown-->
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="panelsStayOpen-Completed2">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-CompletedcollapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-CompletedcollapseTwo">
+                                                        Network Principles in Practice: Linux Networking
+                                                    </button>
+                                                </h2>
+                                                <div id="panelsStayOpen-CompletedcollapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-Completed2">
+                                                    <div class="accordion-body">
+                        <!-- Begin Learned/Skills Dropdown Section-->
+                        <!-- <ul>
+                            <li>
+                            // TODO: Individual skills gained, summarized (bulleted list?)
+                            -->
+                                                        <h5>Learning Outcomes<h5>
+                                                            <h6>
+                                                                <ul>
+                                                                    <li>Set up a network topology in a lab setting, using virtualization and container technology.</li>
+                                                                    <li>Apply knowledge of virtual networking to be able to reverse engineer an existing network.</li>
+                                                                    <li>Architect more complex networks and larger and realistic routing experiments.</li>
+                                                                    <li>Be able to build and deploy a custom network plugin for Kubernetes.</li>
+                                                                    <li>Describe Linux networking in depth, including how the kernel processes traffic and how Linux utilities are used.</li>
+                                                                    <li>Create network appliances (switch, router, gateway) with Linux.</li>
+                                                                    <li>Describe how Linux’s network namespaces work.</li>
+                                                                    <li>Design and build networking support for containerized applications, including a network plugin for Kubernetes.</li>
+                                        <!--J Added 2024 12 18:-->
+                                                                    <li>Specifically learned to use UTM, Containerlab, and Docker.</li>
+                                                                </ul>
+                                                            </h6>
+                                <!-- </li>
+                            </ul>
+                            -->
+                                <!-- End Learned/Skills Dropdown Section-->
+                                <!-- Begin Course Description Dropdown Section-->
+                                                            <div class="accordion-item">
+                                                                <h3 class="accordion-header" id="courseInfo2A">
+                                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#courseInfoCollapse2A" aria-expanded="false" aria-controls="courseInfoCollapse2A">
+                                                                        Course Description (Official)
+                                                                    </button>
+                                                                </h3>
+                                                                <div id="courseInfoCollapse2A" class="accordion-collapse collapse" aria-labelledby="courseInfo2A">
+                                                                    <div class="accordion-body">
+                                                                        <h6>
+                                                                            Throughout this course, we delve into the dynamic domain of Linux Networking,
+                                                                            featuring a robust set of features essential for contemporary networked systems.
+                                                                            Departing from traditional approaches, our emphasis is on practical application
+                                                                            over foundational knowledge. Throughout the course, you'll explore the integration of
+                                                                            concepts into Linux, gaining hands-on experience in architecting and implementing
+                                                                            complex networks and systems. From understanding the Linux kernel's role to building
+                                                                            gateways and navigating virtual networking and container orchestration with Kubernetes,
+                                                                            each week offers valuable insights and practical skills...
+                                                                            providing a comprehensive exploration of network systems.
+                                                                        </h6>
+                                                                    </div>
+                                                                </div>
+                                                            </div> <!-- End Course Description Dropdown Section-->
+                                                        </div>
+                                                        </div>
+                                                    </div> <!--End of Completed Coursework 2 Dropdown-->
+                                                    <div class="accordion-item">
+                                                        <h2 class="accordion-header" id="panelsStayOpen-Completed3">
+                                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-CompletedcollapseThree" aria-expanded="false" aria-controls="panelsStayOpen-CompletedcollapseThree">
+                                                                Network Principles in Practice: Cloud Networking
+                                                            </button>
+                                                        </h2>
+                                                        <div id="panelsStayOpen-CompletedcollapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-Completed3">
+                                                            <div class="accordion-body">
+                        <!-- Begin Learned/Skills Dropdown Section-->
+                        <!-- <ul>
+                            <li>
+                            // TODO: Individual skills gained, summarized (bulleted list?)
+                            -->
+                                                                <h5>Learning Outcomes<h5>
+                                                                    <h6>
+                                                                        <ul>
+                                                                            <li>Create and secure simple cloud applications, <!--J Added 2024 12 18:--> using Google Compute Engine.</li>
+                                                                            <li>Design and deploy complex applications that are segmented and/or geographically distributed.</li>
+                                                                            <li>Analyze tradeoffs between different cloud networking services in architecting a distributed infrastructure.</li>
+                                        <!--J Added 2024 12 18:-->
+                                                                            <li>Describe how various cloud abstractions are (or might have been) architected.</li>
+                                                                            <li>Use Terraform to set up and breakdown servers in Google Cloud.</li>
+                                        <!-- These points seem extraneous and too broad... (taken from official course page:
+                                  https://www.coursera.org/learn/npp-cloud-networking/)
+                                <li>Analyze a complex computing problem and to apply principles of computing and other relevant disciplines to identify solutions.</li>
+                                <li>Design, implement, and evaluate a computing-based solution to meet a given set of computing requirements in the context of the program’s discipline.</li>
+                                <li>Communicate effectively in a variety of professional contexts.</li>
+                                <li>Recognize professional responsibilities and make informed judgments in computing practice based on legal and ethical principles.</li>
+                                <li>Function effectively as a member or leader of a team engaged in activities appropriate to the program’s discipline.</li>
+                                <li>Apply computer science theory and software development fundamentals to produce computing-based solutions.</li> -->
+                                                                        </ul>
+                                                                    </h6>
+                                <!-- </li>
+                            </ul>
+                            -->
+                                <!-- End Learned/Skills Dropdown Section-->
+                                <!-- Begin Course Description Dropdown Section-->
+                                                                    <div class="accordion-item">
+                                                                        <h3 class="accordion-header" id="courseInfo3A">
+                                                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#courseInfoCollapse3A" aria-expanded="false" aria-controls="courseInfoCollapse3A">
+                                                                                Course Description (Official)
+                                                                            </button>
+                                                                        </h3>
+                                                                        <div id="courseInfoCollapse3A" class="accordion-collapse collapse" aria-labelledby="courseInfo3A">
+                                                                            <div class="accordion-body">
+                                                                                <h6>
+                                                                                    Throughout this course, you will learn about both the networking
+                                                                                    abstractions and services for building applications in the cloud,
+                                                                                    and the technology underlying cloud networking. You will be able to
+                                                                                    architect complex applications in the cloud. In understanding
+                                                                                    how the cloud providers created their networks, you will be in a
+                                                                                    better position to troubleshoot applications and analyze different
+                                                                                    possible ways of architecting applications, and even help design
+                                                                                    the next generation of networking for cloud providers.
+                                                                                </h6>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div> <!-- End Course Description Dropdown Section-->
+                                                                </div>
+                                                                </div>
+                                                            </div> <!--End of Completed Coursework 3 Dropdown-->
+                                                            <div class="accordion-item">
+                                                                <h2 class="accordion-header" id="panelsStayOpen-Completed4">
+                                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-CompletedcollapseFour" aria-expanded="false" aria-controls="panelsStayOpen-CompletedcollapseFour">
+                                                                        Algorithms for Searching, Sorting, and Indexing
+                                                                    </button>
+                                                                </h2>
+                                                                <div id="panelsStayOpen-CompletedcollapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-Completed4">
+                                                                    <div class="accordion-body">
+                        <!-- Begin Learned/Skills Dropdown Section-->
+                        <!-- <ul>
+                          <li>
+                          // TODO: Individual skills gained, summarized (bulleted list?)
+                          -->
+                                                                        <h5>Learning Outcomes<h5>
+                                                                            <h6>
+                                                                                <ul>
+                                                                                    <li>Explain fundamental concepts for algorithmic searching and sorting.</li>
+                                                                                    <li>Describe heap data structures and analyze heap components, such as arrays and priority queues.</li>
+                                                                                    <li>Design basic algorithms to implement sorting, selection, and hash functions in heap data structures.</li>
+                                                                                </ul>
+                                                                            </h6>
+                                <!-- </li>
+                          </ul>
+                          -->
+                                <!-- End Learned/Skills Dropdown Section-->
+                                <!-- Begin Course Description Dropdown Section-->
+                                                                            <div class="accordion-item">
+                                                                                <h3 class="accordion-header" id="courseInfo4A">
+                                                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#courseInfoCollapse4A" aria-expanded="false" aria-controls="courseInfoCollapse4A">
+                                                                                        Course Description (Official)
+                                                                                    </button>
+                                                                                </h3>
+                                                                                <div id="courseInfoCollapse4A" class="accordion-collapse collapse" aria-labelledby="courseInfo4A">
+                                                                                    <div class="accordion-body">
+                                                                                        <h6>
+                                                                                            This course covers basics of algorithm design and analysis,
+                                                                                            as well as algorithms for sorting arrays, data structures
+                                                                                            such as priority queues, hash functions, and applications
+                                                                                            such as Bloom filters.
+                                                                                        </h6>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div> <!-- End Course Description Dropdown Section-->
+                                                                        </div>
+                                                                        </div>
+                                                                    </div> <!--End of Completed Coursework 4 Dropdown-->
+                                                                    <div class="accordion-item">
+                                                                        <h2 class="accordion-header" id="panelsStayOpen-Completed5">
+                                                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-CompletedcollapseFive" aria-expanded="false" aria-controls="panelsStayOpen-CompletedcollapseFive">
+                                                                                Trees and Graphs: Basics
+                                                                            </button>
+                                                                        </h2>
+                                                                        <div id="panelsStayOpen-CompletedcollapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-Completed5">
+                                                                            <div class="accordion-body">
+                        <!-- Begin Learned/Skills Dropdown Section-->
+                        <!-- <ul>
+                          <li>
+                          // TODO: Individual skills gained, summarized (bulleted list?)
+                          -->
+                                                                                <h5>Learning Outcomes<h5>
+                                                                                    <h6>
+                                                                                        <ul>
+                                                                                            <li>Define basic tree data structures and identify algorithmic functions associated with them.</li>
+                                                                                            <li>Execute traversals and create graphs within a binary search tree structure.</li>
+                                                                                            <li>Describe strongly connected components in graphs.</li>
+                                                                                        </ul>
+                                                                                    </h6>
+                                <!-- </li>
+                          </ul>
+                          -->
+                                <!-- End Learned/Skills Dropdown Section-->
+                                <!-- Begin Course Description Dropdown Section-->
+                                                                                    <div class="accordion-item">
+                                                                                        <h3 class="accordion-header" id="courseInfo5A">
+                                                                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#courseInfoCollapse5A" aria-expanded="false" aria-controls="courseInfoCollapse5A">
+                                                                                                Course Description (Official)
+                                                                                            </button>
+                                                                                        </h3>
+                                                                                        <div id="courseInfoCollapse5A" class="accordion-collapse collapse" aria-labelledby="courseInfo5A">
+                                                                                            <div class="accordion-body">
+                                                                                                <h6>
+                                                                                                    <p>Basic algorithms on tree data structures, binary search trees,
+                                                                                                        self-balancing trees, graph data structures and basic traversal
+                                                                                                        algorithms on graphs. This course also covers advanced topics
+                                                                                                        such as kd-trees for spatial data and algorithms for spatial data.</p>
+
+                                                                                                    <p>Assumes knowledge of programming constructs- data types, conditionals,
+                                                                                                        loops and classes... Focus on data abstractions (e.g., stacks, queues,
+                                                                                                        lists, trees, graphs, heaps, hash tables, priority queues) and their
+                                                                                                        representation techniques (e.g., linking, arrays). Introduces concepts
+                                                                                                        used in algorithm design and analysis including criteria for selecting
+                                                                                                        data structures to fit their applications.</p>
+                                                                                                </h6>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div> <!-- End Course Description Dropdown Section-->
+                                                                                </div>
+                                                                                </div>
+                                                                            </div> <!--End of Completed Coursework 5 Dropdown-->
+                                                                            <div class="accordion-item">
+                                                                                <h2 class="accordion-header" id="panelsStayOpen-Completed6">
+                                                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-CompletedcollapseSix" aria-expanded="false" aria-controls="panelsStayOpen-CompletedcollapseSix">
+                                                                                        Dynamic Programming, Greedy Algorithms
+                                                                                    </button>
+                                                                                </h2>
+                                                                                <div id="panelsStayOpen-CompletedcollapseSix" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-Completed6">
+                                                                                    <div class="accordion-body">
+                        <!-- Begin Learned/Skills Dropdown Section-->
+                        <!-- <ul>
+                        <li>
+                        // TODO: Individual skills gained, summarized (bulleted list?)
+                        -->
+                                                                                        <h5>Learning Outcomes<h5>
+                                                                                            <h6>
+                                                                                                <ul>
+                                                                                                    <li>Describe basic algorithm design techniques.</li>
+                                                                                                    <li>Create divide and conquer, dynamic programming, and greedy algorithms.</li>
+                                                                                                    <li>Understand intractable problems, P vs NP and the use of integer programming solvers to tackle some of these problems.</li>
+                                                                                                </ul>
+                                                                                            </h6>
+                                <!-- </li>
+                        </ul>
+                        -->
+                                <!-- End Learned/Skills Dropdown Section-->
+                                <!-- Begin Course Description Dropdown Section-->
+                                                                                            <div class="accordion-item">
+                                                                                                <h3 class="accordion-header" id="courseInfo6A">
+                                                                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#courseInfoCollapse6A" aria-expanded="false" aria-controls="courseInfoCollapse6A">
+                                                                                                        Course Description (Official)
+                                                                                                    </button>
+                                                                                                </h3>
+                                                                                                <div id="courseInfoCollapse6A" class="accordion-collapse collapse" aria-labelledby="courseInfo6A">
+                                                                                                    <div class="accordion-body">
+                                                                                                        <h6>
+                                                                                                            <p>This course is part three of a specialization on algorithms and data structures.
+                                                                                                                It covers basic algorithm design techniques such as divide and conquer, dynamic
+                                                                                                                programming, and greedy algorithms. It concludes with a brief introduction to
+                                                                                                                intractability (NP-completeness).</p>
+
+                                                                                                            <p>Covers the fundamentals of algorithms and various algorithmic strategies,
+                                                                                                                including time and space complexity, sorting algorithms, recurrence relations,
+                                                                                                                divide and conquer algorithms, greedy algorithms, dynamic programming, linear
+                                                                                                                programming, graph algorithms, problems in P and NP, and approximation algorithms.</p>
+                                                                                                        </h6>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div> <!-- End Course Description Dropdown Section-->
+                                                                                        </div>
+                                                                                        </div>
+                                                                                    </div> <!--End of Completed Coursework 6 Dropdown-->
+                                                                                </div> <!--End of Completed Coursework Accordion-->
+
+                                                                                <p></p>
+                                                                                <h4>General Skills</h4>
+                                                                                <h7>College-level math skills, including Differential Calculus and Linear Algebra</h7>
+                                                                                <h4>Prior experience with:</h4>
+                                                                                <h7>Python, C/C++, SQL, javascript, html, Lean, Linux, git, Scratch, Swift</h7>
+        <!-- // TODO: expand all, collapse all-->
+                                                                            </body>
+
+                                                                        </html>
